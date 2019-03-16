@@ -1,0 +1,59 @@
+const state = {
+    msgs: [],
+    users: [],
+    user:null,
+    followers: null,
+    subscripts: null
+};
+
+const  mutations = {
+    storeMsg(state, msg) {
+        state.msgs.push(msg);
+    },
+    storeUser(state, { type, item }) {
+        state[type] = item
+    },
+    storeFollowers(state, { type, items }) {
+        state[type] = items
+    },
+    storeSubscripts(state, { type, items }) {
+        state[type] = items
+    },
+    storeUsers(state, { type, items }) {
+        state[type] = items
+    }
+};
+
+const actions = {
+
+};
+
+const getters = {
+    msgs(state) {
+        return state.msgs;
+    },
+    user(state) {
+        let user =  state.user;
+        return user;
+
+    },
+    followers(state) {
+        let followers =  state.followers;
+        return followers;
+    },
+    subscripts(state) {
+        let subscripts =  state.subscripts;
+        return subscripts;
+    },
+    users(state) {
+        let users =  state.users;
+        return users;
+    }
+};
+
+export default {
+    state,
+    mutations,
+    actions,
+    getters
+};

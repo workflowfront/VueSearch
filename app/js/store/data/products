@@ -1,0 +1,22 @@
+export default  [ {
+    "description" : "Пневматический автомат Stalker S47 – это газобаллонная модификация знаменитого АК-47, разработанная китайкой компанией Stalker. На российский рынок компания стала поставлять свою продукцию всего 3 года назад. ",
+    "id" : 1,
+    "price" : 13990,
+    "quantity" : 10,
+    "thumbnail_url" : "https://www.dropbox.com/h",
+    "title" : "AK series"
+}, {
+    "description" : "Страйкбольный автомат Cyma H&K G36C (CM011) – это прочный, надежный и доступный по цене привод, полноценная по масштабу копия немецкой штурмовой винтовки. Здесь используется простой в обслуживании гирбокс версии 3, выполненный из качественного полимера.",
+    "id" : 2,
+    "price" : 9500,
+    "quantity" : 15,
+    "thumbnail_url" : "https://www.dropbox.com/home/imgs?preview=G36Series.jpg",
+    "title" : "G36 Series"
+}, {
+    "description" : "Пневматическая винтовка Crosman M4-177 и является отличной репликой M4/AR",
+    "id" : 3,
+    "price" : 7790,
+    "quantity" : 1,
+    "thumbnail_url" : "https://www.dropbox.com/home/imgs?preview=M4Series.jpg",
+    "title" : "M4 Series"
+} ];

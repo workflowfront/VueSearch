@@ -1,0 +1,33 @@
+import dataProducts from "../data/products";
+
+const state = {
+    loading: true,
+    products:dataProducts
+}
+
+const mutations = {
+    'UPDATE_PRODUCTS' (state, products) {
+        state.products = products;
+        state.loading = false;
+    }
+}
+
+const actions = {
+
+}
+
+const getters = {
+    products: (state) => {
+        return state.products;
+    },
+    loading: (state) => {
+        return state.loading;
+    }
+}
+
+export default {
+    state,
+    mutations,
+    actions,
+    getters
+}

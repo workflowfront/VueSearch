@@ -1,0 +1,76 @@
+//import dataProducts from "./data/products";
+import User from "../models/user";
+const axios = require('axios');
+
+export const addErMsg = ({commit}, payload) => {
+       commit('storeMsg', payload);
+};
+
+export const fetchUser = function ({commit}, id) {
+    console.log(this.state.serchBlock.users);
+        let users = this.getters.users,
+        user = users.filter((user) => { if (user.id === id) return user;})[0];
+         commit('storeUser', { type: 'user', item: user });
+};
+
+export const fetchFollowers = ({commit}, user) =>{
+         let follower = 'Not Found Followers';
+         axios.get(user.follower)
+         .then((res) => {
+             if (!!res.data) {
+                 follower = res.data;
+             };
+             commit('storeFollowers', {type: 'followers', items: follower});
+         });
+};
+
+export const fetchSubscripts = ({ commit }, user) => {
+             let subscript = 'Not Found Subscriptions';
+             axios.get(user.subscript)
+                 .then((res) => {
+                      if (!!res.data) {
+                          subscript = res.data;
+                        };
+                        commit('storeSubscripts', { type: 'subscripts', items: subscript });
+
+                 });
+};
+
+export const fetchUsers = ({ commit }, query) => {
+    let users = [];
+    function createUsList(id,login,subscript,follower ) {
+        let userData = { id: id,
+            login: login,
+            subscript: subscript,
+            follower: follower
+        };
+        let user = new User (userData);
+        users.push(user);
+        return commit('storeUsers', { type: 'users', items: users });
+    };
+    return axios.get("https://api.github.com/search/users?q="+query+"+repos:%3E42+followers:%3E1000")
+        .then((res) => {
+                if (res.data['total_count'] === 0) {
+                    createUsList(null,'Not Found','','');
+                }else{
+                    Object.getOwnPropertyNames(res.data.items).forEach(function(val, idx, array) {
+                        if  (!res.data.items[val].login) return;
+                        createUsList(
+                            res.data.items[val].id,
+                            res.data.items[val].login,
+                            res.data.items[val]['subscriptions_url'],
+                            res.data.items[val]['followers_url']);
+
+                    });
+                }
+            }
+        )
+        .catch(function (error) {
+            console.log('!!error');
+        });
+
+};
+
+export function listenProducts({commit},dataProducts) {
+        commit('UPDATE_PRODUCTS', dataProducts);
+};
